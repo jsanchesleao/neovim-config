@@ -1,11 +1,8 @@
 require('config.lazy')
 require('jef.floating')
 require('jef.yawk').setup()
+require('jef.snippets')
 
--- set defaults
-vim.cmd "set tabstop=2"
-vim.cmd "set shiftwidth=2"
-vim.cmd "set expandtab"
 -- vim.cmd "colorscheme tokyonight-night"
 vim.cmd "colorscheme cyberdream"
 vim.cmd "set number"
@@ -24,6 +21,7 @@ vim.keymap.set('n', '<leader>gy', '<cmd>silent !tmux-popup-run yazi<cr>', { nore
 -- lsp commands
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
 vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename)
+vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>k', function() 
   vim.lsp.buf.hover({ border = "rounded" })
@@ -41,3 +39,8 @@ if vim.g.neovide then
   vim.g.neovide_position_animation_lenght = 0.01
   vim.g.neovide_scroll_animation_length = 0.1
 end
+
+-- set defaults
+vim.cmd "set tabstop=2"
+vim.cmd "set shiftwidth=2"
+vim.cmd "set expandtab"

@@ -21,6 +21,8 @@ return {
               ["ac"] = "@class.outer",
               ["ic"] = "@class.inner",
               ["as"] = "@local.scope",
+              ["ap"] = "@jsxattr.outer",
+              ["at"] = "@jsxelem.outer",
             },
             selection_modes = {
               ['@parameter.outer'] = 'v',

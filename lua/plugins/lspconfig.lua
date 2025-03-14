@@ -2,14 +2,33 @@ return {
   {
     'neovim/nvim-lspconfig',
     config = function()
-      require('lspconfig').ts_ls.setup({
-        handlers = {
-          ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-          ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-        }
-      })
+      require('lspconfig').ts_ls.setup({ })
+      require('lspconfig').pylsp.setup({ })
+      require'lspconfig'.lua_ls.setup {
+        on_init = function(client)
+          if client.workspace_folders then
+            local path = client.workspace_folders[1].name
+            if path ~= vim.fn.stdpath('config') and (vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc')) then
+              return
+            end
+          end
 
-      require('lspconfig').pylsp.setup({})
+          client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            runtime = {
+              version = 'LuaJIT'
+            },
+            workspace = {
+              checkThirdParty = false,
+              library = {
+                vim.env.VIMRUNTIME
+              }
+            }
+          })
+        end,
+        settings = {
+          Lua = {}
+        }
+      }
     end,
   },
   {
