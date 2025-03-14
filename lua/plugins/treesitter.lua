@@ -31,6 +31,13 @@ return {
             },
             include_surrounding_whitespace = true,
           },
+          move = {
+            enable = true,
+            goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]x"] = "@jsxelem.outer", ["]e"] = "@export.stmt", ["]m"] = "@return.stmt"  },
+            goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]X"] = "@jsxelem.outer", ["]E"] = "@export.stmt" },
+            goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[x"] = "@jsxelem.outer", ["[e"] = "@export.stmt", ["[m"] = "@return.stmt"  },
+            goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[X"] = "@jsxelem.outer", ["[E"] = "@export.stmt" },
+          },
           lsp_interop = {
             enable = true,
             border = 'none',
